@@ -10,6 +10,7 @@
 #include "Font.h"
 #include "Knight.h"
 #include "Wall.h"
+#include "Scene.h"
 #include <sstream>
 using std::stringstream;
 
@@ -19,7 +20,7 @@ class EnemyKnight : public Object
 {
 private:
 public:
-	EnemyKnight(Knight* knightIn, Wall * wall, float velAtk, float velMov);
+	EnemyKnight(Knight* knightIn, Wall * wall, Scene* scene,float velAtk, float velMov);
 	// construtor
 	~EnemyKnight();						// destrutor
 	
@@ -32,6 +33,7 @@ public:
 	bool stop;
 	float count;
 	
+	Scene* scene;
 	Font* verdana = nullptr;
 	bool swordOpen = false;
 	float life = 100;

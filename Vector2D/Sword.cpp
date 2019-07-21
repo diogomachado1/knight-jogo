@@ -16,7 +16,7 @@
 // ---------------------------------------------------------------------------------
 
 
-Sword::Sword(Knight* knightIn,float sizeX, float sizeY)
+Sword::Sword(Knight* knightIn, float sizeX, float sizeY)
 {
 	knight = knightIn;
 	width = sizeX;
@@ -57,18 +57,18 @@ void Sword::OnCollision(Object* obj)
 void Sword::Update()
 {
 	if (knight->side == true) {
-		MoveTo(knight->x+(knight->width/2 +width/2), knight->y-12);
+		MoveTo(knight->x + (knight->width / 2 + width / 2), knight->y - 12);
 	}
 	else {
-		MoveTo(knight->x - (knight->width / 2 + width/2), knight->y - 12);
+		MoveTo(knight->x - (knight->width / 2 + width / 2), knight->y - 12);
 	}
 	if (knight->animGet == 3) {
 		if (knight->anim->Frame() == 8) {
-			Level1::scene->Delete();
+			knight->scene->Delete();
 		}
 	}
 	if (knight->animGet != 3) {
-			Level1::scene->Delete();
+		knight->scene->Delete();
 	}
 }
 

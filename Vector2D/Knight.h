@@ -20,6 +20,7 @@
 #include "Animation.h"					// animação de sprites
 #include "Font.h"
 #include "Vector.h"
+#include "Scene.h"
 #include <sstream>
 using std::stringstream;
 //#include "sword.h"
@@ -37,6 +38,8 @@ public:
 	Animation * anim;					// animação de explosão
 	Animation* animListRight[10];
 	Animation* animListLeft[10];
+	int shields=0;
+	Scene* scene;
 	bool swordOpen;
 	bool attackButtonPress;
 	Font* verdana = nullptr;

@@ -10,7 +10,6 @@
 **********************************************************************************/
 
 #include "Knight.h"
-#include "Level1.h"
 #include "EnemyKnight.h"
 #include "Wall.h"
 #include "Sword.h"
@@ -39,11 +38,11 @@ Knight::Knight()
 	bbox = new Rect(-width / 2.0f, -height / 2.0f, width / 2.0f, height / 2.0f);
 	verdana = new Font("Resources/verdana12.png");
 	verdana->Spacing("Resources/verdana12.dat");
-	Scale(1.5f);
+	//Scale(1.5f);
 	width = this->width * scale;
 	height = this->height * scale;
 	//verdana->Draw(x, y, "Verdana 12", Color(0.0f, 0.0f, 0.0f, 1.0f));
-	
+
 }
 
 
@@ -65,49 +64,6 @@ void Knight::ChangeTile(TileSet* tiles, bool loop)
 void Knight::OnCollision(Object* obj)
 {
 
-	//if (obj->Type() == ENEMY)
-	//{
-	//	EnemyKnight* enemyKnight = (EnemyKnight*)obj;
-	//	enemyKnight->Stop();
-	//	if (attackButtonPress && animGet == 3)
-	//		if ((anim->Frame() == 6 && enemyKnight->animGet != 4)) //Se a espada estiver no completamente pra frente e o 
-	//			if (enemyKnight->animGet != 1) {
-	//				enemyKnight->SetAnimation(4, enemyKnight->side);
-	//				kill++;
-	//			}
-	//			else if (enemyKnight->side == side) {
-	//				if ((enemyKnight->x > x && side == true) || (enemyKnight->x < x && side == false)) {
-	//					enemyKnight->SetAnimation(4, enemyKnight->side);
-	//					kill++;
-	//				}
-	//			}
-	//}
-	if (obj->Type() == WALL) {
-		/*Wall* wall = (Wall*)obj;
-		float bordLeft = (wall->X() - wall->width / 2.0f);
-		float bordRight = (wall->X() + wall->width / 2.0f);
-		float bordTop = (wall->Y() - wall->height / 2.0f);
-		float bordBottom = (wall->Y() + wall->height / 2.0f);
-		float knightBorderRight = x + 25;
-		float knightBorderLeft = x - 25;
-		float knightBorderTop = y - 47;
-		float knightBorderBottom = y + 47;
-		if (knightBorderRight> bordLeft && knightBorderRight < bordLeft + 10) {
-			MoveTo(bordLeft - 25, y);
-		}
-		if (knightBorderLeft< bordRight && knightBorderLeft > bordRight-10) {
-			MoveTo(bordRight + 25, y);
-		}
-		if (knightBorderBottom> bordTop && knightBorderBottom < bordTop + 10) {			
-			MoveTo(x, bordTop - 47);
-			if (jumpTime <= 0) {
-				jumpController = false;
-			}
-		}
-		if (knightBorderTop < bordBottom && knightBorderTop > bordBottom - 30) {
-			MoveTo(x, bordBottom + 47);
-		}*/
-	}
 }
 
 void Knight::moving(int x, int y, bool sideCurrent) {
@@ -138,12 +94,12 @@ void Knight::SetAnimation(int animationNumber, bool sideCurrent) {
 		anim->NextFrame();
 	}
 	if (animGet == 4 && anim->Frame() == 8) {
-		Level1::scene->Delete();
+		scene->Delete();
 	}
 }
 void Knight::jump()
 {
-	jumpTime = -400;
+	jumpTime = -700;
 
 }
 
@@ -156,11 +112,17 @@ void Knight::reviceAttack(float value) {
 
 void Knight::Draw()
 {
+	stringstream shieldsText;
+	shieldsText.str("");
+	shieldsText << int(shields);
+	verdana->Draw(50, 50, shieldsText.str(), Color(1.0f, 1.0f, 1.0f, 1.0f));
+	
 	stringstream text;
 	text.str("");
 	text << int(life);
-	anim->Draw(x, y, z, scale);
 	verdana->Draw(x, y - 50, text.str(), Color(1.0f, 1.0f, 1.0f, 1.0f));
+	
+	anim->Draw(x, y, z, scale);
 }
 
 void Knight::Update()
@@ -168,12 +130,12 @@ void Knight::Update()
 
 
 	if (animGet == 3 && anim->Frame() == 4 && swordOpen == false) {
-		Level1::scene->Add(new Sword(this, 35, 40), MOVING);
+		scene->Add(new Sword(this, 35, 40), MOVING);
 		swordOpen = true;
 	}
 
-	jumpTime = jumpTime + (500 * gameTime);
-	Translate(0, jumpTime*gameTime);
+	jumpTime = jumpTime + (1000 * gameTime);
+	Translate(0, jumpTime * gameTime);
 	if (animGet == 4) {
 		SetAnimation(4, side);
 	}
@@ -209,18 +171,18 @@ void Knight::Update()
 		if (animGet != 1 && animGet != 3) {
 			if (window->KeyDown(0x44))
 			{
-				
-					moving(200, 0, true);
-				
+
+				moving(200, 0, true);
+
 			}
-			if (window->KeyDown(0x41) )
+			if (window->KeyDown(0x41))
 			{
-				
-					moving(-200, 0, false);
+
+				moving(-200, 0, false);
 			}
 			if (window->KeyDown(0x57) && jumpController == false)
 			{
-				jumpController = true;	
+				jumpController = true;
 				Translate(0, -5);
 				jump();
 			}
@@ -237,9 +199,11 @@ void Knight::Update()
 			}*/
 			if (window->KeyDown(0x53))
 			{
-				
-					moving(0, 200, side);
-				
+				if (jumpTime<0) {
+					jumpTime = 0;
+				}
+				moving(0, 200, side);
+
 			}
 			if (window->KeyUp(0x44) && window->KeyUp(0x41) && window->KeyUp(0x57) && window->KeyUp(0x53)) {
 				SetAnimation(0, side);

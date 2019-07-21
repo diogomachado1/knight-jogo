@@ -9,13 +9,13 @@
 //
 **********************************************************************************/
 
-#include "Level1.h"
 #include "EnemyKnight.h"
 #include "EnemySword.h"
+#include "TSOTD.h"
 
 // ---------------------------------------------------------------------------------
 
-EnemyKnight::EnemyKnight(Knight* knightIn, Wall* wall, float velAtk, float velMov)
+EnemyKnight::EnemyKnight(Knight* knightIn, Wall* wall, Scene* scene, float velAtk, float velMov)
 {
 
 	animListRight[0] = new Animation(new TileSet("Resources/newKnight/knightIdleR.png", 100, 100, 4, 4), 0.150f, true);
@@ -29,6 +29,8 @@ EnemyKnight::EnemyKnight(Knight* knightIn, Wall* wall, float velAtk, float velMo
 	animListLeft[2] = new Animation(new TileSet("Resources/newKnight/knightWalkL.png", 100, 100, 8, 8), 0.090f, false);
 	animListLeft[3] = new Animation(new TileSet("Resources/newKnight/knightAttackL.png", 100, 100, 10, 10), 0.090f, false);
 	animListLeft[4] = new Animation(new TileSet("Resources/newKnight/knightDeathL.png", 100, 100, 9, 9), 0.180f, false);
+	
+	this->scene = scene;
 	height = 95;
 	width = 35;
 	anim = animListRight[0];
@@ -89,7 +91,7 @@ void EnemyKnight::SetAnimation(int animationNumber, bool sideCurrent) {
 		anim->NextFrame();
 	}
 	if (animGet == 4 && anim->Frame() == 8) {
-		Level1::scene->Delete();
+		scene->Delete();
 	}
 
 }
@@ -123,7 +125,7 @@ void EnemyKnight::reviceAttack(float value) {
 void EnemyKnight::Update()
 {
 	if (animGet == 3 && anim->Frame() == 4 && swordOpen == false) {
-		Level1::scene->Add(new EnemySword(this, 35, 40), MOVING);
+		scene->Add(new EnemySword(this, 35, 40), MOVING);
 		swordOpen = true;
 	}
 	targetX = knight->x;

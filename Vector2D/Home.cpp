@@ -1,5 +1,5 @@
 
-#include "Engine.h"
+#include "TSOTD.h"
 #include "Home.h"
 #include "Level1.h"
 #include "Knight.h"
@@ -33,7 +33,7 @@ void Home::Update()
 
 	// passa ao primeiro nível com ENTER
 	if (window->KeyDown(VK_RETURN))
-		Engine::Next<Level1>();
+		TSOTD::NextLevel<Level1>();
 }
 
 // ------------------------------------------------------------------------------
