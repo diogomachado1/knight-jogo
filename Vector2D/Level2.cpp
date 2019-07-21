@@ -11,7 +11,7 @@ Scene* Level2::scene = nullptr;
 
 // -----------------------------------------------------------------------------
 
-void Level2::Init(Knight* knight)
+void Level2::Init()
 {
 	scene = new Scene();
 	//window = Engine::window;
@@ -145,7 +145,7 @@ void Level2::Update()
 	if (ctrlKeyB && window->KeyDown('B'))
 	{
 		ctrlKeyB = false;
-		Engine::Next<Home>(knight);
+		Engine::Next<Home>();
 	}
 
 }

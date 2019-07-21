@@ -30,7 +30,7 @@ private:
 public:
 	static Scene* scene;			// gerenciador de cena
 
-	void Init(Knight* knight);					// inicializa jogo
+	void Init();					// inicializa jogo
 	void Update();					// atualiza lógica do jogo
 	void Draw();					// desenha jogo
 	void Finalize();				// finaliza jogo
