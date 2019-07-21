@@ -1,9 +1,9 @@
 #include "Level2.h"
 #include "Level2.h"
-#include "Engine.h"
+#include "TSOTD.h"
 #include "Home.h"	
 #include "Wall.h"
-
+#include "Engine.h"
 // -----------------------------------------------------------------------------
 
 Scene* Level2::scene = nullptr;
@@ -17,22 +17,23 @@ void Level2::Init()
 	//window = Engine::window;
 	//backg = new Sprite("Resources/background.png");
 	keyCtrl = false;
-	this->knight = knight;
+	this->knight = TSOTD::knight;
+	this->knight->scene = scene;
 	scene->Add(knight, MOVING);
-	//knight->MoveTo(window->CenterX() - 300, window->CenterY());
+	knight->MoveTo(window->CenterX() - 300, window->CenterY());
 	for (int i = 0; i < 2000; i += 50) {
 		scene->Add(new Wall(10, 10, i, 200), STATIC);
 	}
 
 	Wall* floor1 = new Wall(600, 50, 300, 450);
 	scene->Add(floor1, STATIC);
-	EnemyKnight* enemyKnight = new EnemyKnight(knight, floor1, 0.100f, 1);
+	EnemyKnight* enemyKnight = new EnemyKnight(knight, floor1, scene, 0.100f, 1);
 	scene->Add(enemyKnight, MOVING);
 
 
 	Wall* floor2 = new Wall(600, 50, 1150, 450);
 	scene->Add(floor2, STATIC);
-	EnemyKnight* enemyKnight2 = new EnemyKnight(knight, floor2, 0.100f, 1);
+	EnemyKnight* enemyKnight2 = new EnemyKnight(knight, floor2, scene, 0.100f, 1);
 	scene->Add(enemyKnight2, MOVING);
 
 	scene->Add(new Wall(1400, 50, 500, 700), STATIC);
@@ -145,7 +146,7 @@ void Level2::Update()
 	if (ctrlKeyB && window->KeyDown('B'))
 	{
 		ctrlKeyB = false;
-		Engine::Next<Home>();
+		TSOTD::NextLevel<Home>();
 	}
 
 }
@@ -171,5 +172,6 @@ void Level2::Draw()
 void Level2::Finalize()
 {
 	delete backg;
+	scene->Remove(knight, MOVING);
 	delete scene;
 }

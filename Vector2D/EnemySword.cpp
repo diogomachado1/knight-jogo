@@ -11,7 +11,7 @@
 **********************************************************************************/
 
 #include "EnemySword.h"
-#include "level1.h"
+#include "TSOTD.h"
 
 // ---------------------------------------------------------------------------------
 
@@ -64,11 +64,11 @@ void EnemySword::Update()
 	}
 	if (knight->animGet == 3) {
 		if (knight->anim->Frame() == 8) {
-			Level1::scene->Delete();
+			knight->scene->Delete();
 		}
 	}
 	if (knight->animGet != 3) {
-		Level1::scene->Delete();
+		knight->scene->Delete();
 	}
 }
 
