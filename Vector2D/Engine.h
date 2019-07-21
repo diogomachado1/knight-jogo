@@ -49,7 +49,7 @@ public:
 	int  Start(Game * level);			// inicia o laço do jogo
 
 	template<class T>
-	static void Next(Knight* knight)					// muda para próximo nível do jogo
+	static void Next()					// muda para próximo nível do jogo
 	{
 		if (game)
 		{
@@ -57,7 +57,7 @@ public:
 			game->Finalize();
 			delete game;
 			game = new T();
-			game->Init(knight);
+			game->Init();
 		}
 	};
 };

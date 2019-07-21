@@ -85,7 +85,7 @@ int Engine::Loop()
 	timer.Start();
 
 	// inicialização do jogo
-	game->Init(new Knight());
+	game->Init();
 
 	// mensagens do Windows
 	MSG  msg = { 0 };

@@ -11,13 +11,13 @@ Scene* Level1::scene = nullptr;
 
 // -----------------------------------------------------------------------------
 
-void Level1::Init(Knight* knight)
+void Level1::Init()
 {
 	scene = new Scene();
 
 	//backg = new Sprite("Resources/background.png");
 	keyCtrl = false;
-	this->knight = knight;
+	this->knight = new Knight();
 	scene->Add(knight, MOVING);
 	knight->MoveTo(window->CenterX() - 300, window->CenterY());
 	for (int i = 0; i < 2000; i += 50) {
@@ -145,12 +145,12 @@ void Level1::Update()
 	if (ctrlKeyB && window->KeyDown('B'))
 	{
 		ctrlKeyB = false;
-		Engine::Next<Home>(knight);
+		Engine::Next<Home>();
 	}
 	if (ctrlKeyB && window->KeyDown('M'))
 	{
 		ctrlKeyB = false;
-		Engine::Next<Level2>(knight);
+		Engine::Next<Level2>();
 	}
 }
 

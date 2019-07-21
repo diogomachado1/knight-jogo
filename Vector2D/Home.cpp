@@ -6,13 +6,9 @@
 
 // ------------------------------------------------------------------------------
 
-void Home::Init()
-{
-	backg = new Sprite("Resources/titleScreen.jpg");
-	knight = new Knight();
-}
 
-void Home::Init(Knight * knight)
+
+void Home::Init()
 {
 	backg = new Sprite("Resources/titleScreen.jpg");
 	this->knight = new Knight();
@@ -37,7 +33,7 @@ void Home::Update()
 
 	// passa ao primeiro nível com ENTER
 	if (window->KeyDown(VK_RETURN))
-		Engine::Next<Level1>(knight);
+		Engine::Next<Level1>();
 }
 
 // ------------------------------------------------------------------------------

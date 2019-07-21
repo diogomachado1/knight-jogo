@@ -20,8 +20,7 @@ private:
 
 public:
 	Knight* knight;
-	void Init();
-	void Init(Knight* Knight);					// inicializa jogo
+	void Init();				// inicializa jogo
 	void Update();					// atualiza lógica do jogo
 	void Draw();					// desenha jogo
 	void Finalize();				// finaliza jogo
