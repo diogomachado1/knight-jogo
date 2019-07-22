@@ -34,6 +34,9 @@ public:
 	bool stop;
 	float count;
 	
+	float powerCooldown=0;
+	float powerStageCooldown=0;
+	int stage=1;
 	Scene* scene;
 	Font* verdana = nullptr;
 	bool swordOpen = false;
@@ -71,10 +74,15 @@ inline void EnemyKnight::Draw()
 	else {
 		cor = &Color(0.5f, 0.0f, 0.0f, 1.0f);
 	}
+	if (hard == 4) {
+		anim->Draw(x, y, z, 2.0f, scale, *cor);
+	}
+	else {
+		anim->Draw(x, y, z, 1.0f, 1.0, *cor);
+	}
 	stringstream text;
 	text.str("");
 	text << int(life);
-	anim->Draw(x, y, z, 1.0f, 0.0f, *cor);
 	verdana->Draw(x, y-50, text.str(), Color(1.0f, 1.0f, 1.0f, 1.0f));
 }
 

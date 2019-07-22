@@ -2,6 +2,7 @@
 #include "Level2.h"
 #include "Level3.h"
 #include "Level4.h"
+#include "Level5.h"
 #include "TSOTD.h"
 #include "Home.h"	
 #include "Wall.h"
@@ -128,7 +129,7 @@ void Level2::Update()
 		TSOTD::NextLevel<Level4>();
 	}
 	else if (door4->newLevel == 5) {
-		TSOTD::NextLevel<Home>();
+		TSOTD::NextLevel<Level5>();
 	}
 
 }

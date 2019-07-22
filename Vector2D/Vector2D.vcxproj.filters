@@ -132,6 +132,12 @@
     <ClCompile Include="Level4.cpp">
       <Filter>Game\Arquivos de Origem</Filter>
     </ClCompile>
+    <ClCompile Include="Level5.cpp">
+      <Filter>Game\Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="BossPower.cpp">
+      <Filter>Game\Arquivos de Origem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Controller.h">
@@ -242,6 +248,12 @@
     <ClInclude Include="Level4.h">
       <Filter>Game\Arquivos de Cabeçalho</Filter>
     </ClInclude>
+    <ClInclude Include="Level5.h">
+      <Filter>Game\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="BossPower.h">
+      <Filter>Game\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Pixel.hlsl">
@@ -267,6 +279,9 @@
       <Filter>Game\Arquivos de Recurso</Filter>
     </Text>
     <Text Include="Resources\Level4.txt">
+      <Filter>Game\Arquivos de Recurso</Filter>
+    </Text>
+    <Text Include="Resources\Level5.txt">
       <Filter>Game\Arquivos de Recurso</Filter>
     </Text>
   </ItemGroup>

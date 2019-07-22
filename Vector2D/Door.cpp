@@ -23,6 +23,9 @@ Door::Door(float posX, float posY, int level, int nextLevel, Knight* knight)
 	newLevel = level;
 	this->nextLevel = nextLevel;
 	this->knight = knight;
+	if (posX < 700) {
+		rotation = 180.0f;
+	}
 	door = new Sprite("Resources/door.png");
 	wall = new Sprite("Resources/wallY200.png");
 	sprite = wall;

@@ -16,12 +16,13 @@ class EnemySword : public Object
 {
 private:
 public:
-	EnemySword(EnemyKnight* knightIn, float sizeX, float sizeY);
+	EnemySword(EnemyKnight* knightIn, float sizeX, float sizeY, float damage);
 	// construtor
 	~EnemySword();						// destrutor
 
 	EnemyKnight* enemyknight;
 	bool hit = false;
+	float damage;
 	float width;
 	float height;
 	void OnCollision(Object* obj);					// atualização do objeto

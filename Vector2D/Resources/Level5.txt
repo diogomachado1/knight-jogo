@@ -1,0 +1,16 @@
+// Knight
+// Criação:		14 Fev 2013
+// Atualização:	14 Fev 2013
+// Descrição:   Posição das plataformas do nível 1
+//
+// 200 500 1500 comprimento
+// 50			largura
+//
+//	sizeX	sizeY	posX	posY	enemy	hard	key
+	200		50		950		500		0		0		0
+	500		50		400		300		0		0		0
+	200		50		1250	575		0		0		0
+	50		1500	0		950		0		0		0
+	50		1500	1200	525		0		0		0
+	1500	50		750		800		1		4		0
+	1500	50		750		0		0		0		0
