@@ -38,7 +38,9 @@ public:
 	Animation * anim;					// animação de explosão
 	Animation* animListRight[10];
 	Animation* animListLeft[10];
-	bool keys[5] = { false, false, false, false, false };
+	bool keys[6] = { false, true, false, false, false, false };
+	bool shieldsArray[5] = { false, false, false, false, false };
+	bool swordsArray[5] = { false, false, false, false, false };
 	int shields=0;
 	int swordItems = 0;
 	Scene* scene;

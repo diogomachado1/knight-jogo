@@ -29,10 +29,11 @@ private:
 	Sprite* swordItem;									// sprite da plataforma
 
 public:
-	SwordItem(float posX, float posY, Scene* scene);	// construtor	
+	SwordItem(float posX, float posY, Scene* scene, int number);	// construtor	
 	~SwordItem();
 	// destrutor
 	Scene* scene;
+	int number;
 	void OnCollision(Object* obj);
 	void Update();										// atualização do objeto
 	void Draw();										// desenho do objeto

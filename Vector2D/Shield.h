@@ -29,9 +29,10 @@ private:
 	Sprite* shield;									// sprite da plataforma
 
 public:
-	Shield(float posX, float posY, Scene* scene);	// construtor	
+	Shield(float posX, float posY, Scene* scene, int number);	// construtor	
 	~Shield();	
 	// destrutor
+	int number;
 	Scene* scene;
 	void OnCollision(Object* obj);
 	void Update();										// atualização do objeto
