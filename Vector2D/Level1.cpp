@@ -27,7 +27,6 @@ void Level1::Init()
 	this->knight = TSOTD::knight;
 	this->knight->scene = scene;
 	scene->Add(knight, MOVING);
-	knight->MoveTo(window->CenterX() - 300, window->CenterY());
 
 	Wall* wall;
 	float sizeX, sizeY, posX, posY;
@@ -93,12 +92,19 @@ void Level1::Update()
 	if (window->KeyUp('B'))
 		ctrlKeyB = true;
 
+	if (window->KeyDown('O'))
+	{
+		for (int i = 0; i < 6; i++) {
+			knight->keys[i] = true;
+		}
+	}
 	if (ctrlKeyB && window->KeyDown('B'))
 	{
 		ctrlKeyB = false;
 		TSOTD::NextLevel<Home>();
 	} else if (door->newLevel == 2) {
 			ctrlKeyB = false;
+			knight->MoveTo(100,100);
 			TSOTD::NextLevel<Level2>();
 	}
 	

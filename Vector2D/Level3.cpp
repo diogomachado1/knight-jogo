@@ -27,7 +27,6 @@ void Level3::Init()
 	this->knight = TSOTD::knight;
 	this->knight->scene = scene;
 	scene->Add(knight, MOVING);
-	knight->MoveTo(window->CenterX() - 300, window->CenterY());
 
 	Wall* wall;
 	float sizeX, sizeY, posX, posY;
@@ -99,6 +98,7 @@ void Level3::Update()
 	}
 	else if (door->newLevel == 2) {
 		ctrlKeyB = false;
+		knight->MoveTo(1100, 100);
 		TSOTD::NextLevel<Level2>();
 	}
 
