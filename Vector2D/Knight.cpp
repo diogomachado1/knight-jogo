@@ -1,11 +1,11 @@
 /**********************************************************************************
-// Knight (Código Fonte)
+// Knight (Cï¿½digo Fonte)
 //
-// Criação:		20 Jan 2013
-// Atualização: 06 Jun 2019
+// Criaï¿½ï¿½o:		20 Jan 2013
+// Atualizaï¿½ï¿½o: 06 Jun 2019
 // Compilador:	Visual C++ 2019
 //
-// Descrição:	Animação de uma explosão
+// Descriï¿½ï¿½o:	Animaï¿½ï¿½o de uma explosï¿½o
 //
 **********************************************************************************/
 
@@ -13,6 +13,7 @@
 #include "EnemyKnight.h"
 #include "Wall.h"
 #include "Sword.h"
+#include "TSOTD.h"
 // ---------------------------------------------------------------------------------
 
 Knight::Knight()
@@ -99,13 +100,18 @@ void Knight::SetAnimation(int animationNumber, bool sideCurrent) {
 }
 void Knight::jump()
 {
-	jumpTime = -600;
+	jumpTime = -700;
+
 }
 
 void Knight::reviceAttack(float value) {
 	this->life -= (value/(1+(float(shields)/5)));
+
 	if (life <= 0) {
 		SetAnimation(4, side);
+
+		TSOTD::audio->Play(PLAYERDEATH);
+
 	}
 }
 
@@ -120,12 +126,12 @@ void Knight::Draw()
 	shieldsText.str("");
 	shieldsText <<"Escudos:"<< int(shields);
 	verdana->Draw(50, 50, shieldsText.str(), Color(1.0f, 1.0f, 1.0f, 1.0f));
-
+	
 	stringstream text;
 	text.str("");
 	text << int(life);
 	verdana->Draw(x, y - 50, text.str(), Color(1.0f, 1.0f, 1.0f, 1.0f));
-
+	
 	anim->Draw(x, y, z, scale);
 }
 
@@ -134,8 +140,11 @@ void Knight::Update()
 
 
 	if (animGet == 3 && anim->Frame() == 4 && swordOpen == false) {
+
+
 		scene->Add(new Sword(this, 35, 40), MOVING);
 		swordOpen = true;
+		TSOTD::audio->Play(ATTACK);
 	}
 
 	jumpTime = jumpTime + (1000 * gameTime);
@@ -165,6 +174,8 @@ void Knight::Update()
 		}
 		if (attackButtonPress && (anim->Frame() > 1 || window->KeyUp(0x47)))
 		{
+			TSOTD::audio->Play(SWING);
+
 			SetAnimation(3, side);
 			if (anim->Frame() == 9) {
 				attackButtonPress = false;
@@ -203,7 +214,7 @@ void Knight::Update()
 			}*/
 			if (window->KeyDown(0x53))
 			{
-				if (jumpTime < 0) {
+				if (jumpTime<0) {
 					jumpTime = 0;
 				}
 				moving(0, 200, side);

@@ -40,18 +40,19 @@ void Level1::Init()
 	{
 		if (fin.good())
 		{
-			// lê linha com informações da plataforma
+			// lï¿½ linha com informaï¿½ï¿½es da plataforma
 			fin >> sizeY; fin >> posX; fin >> posY; fin >> enemy; fin >> hard;
 			wall = new Wall(sizeX, sizeY, posX, posY);
 			scene->Add(wall, STATIC);
 			if (enemy==1) {
 				EnemyKnight* enemyKnight = new EnemyKnight(knight, wall, scene, hard);
 				scene->Add(enemyKnight, MOVING);
+				
 			}
 		}
 		else
 		{
-			// ignora comentários
+			// ignora comentï¿½rios
 			fin.clear();
 			char temp[80];
 			fin.getline(temp, 80);
@@ -82,6 +83,8 @@ void Level1::Init()
 	//scene->Add(new Wall(50, 50, 500, 650), STATIC);
 	//scene->Add(new Wall(50, 50, 500, 650), STATIC);
 	//knight->MoveTo(500, 0);
+	// toca mï¿½sica
+	//TSOTD::audio->Play(MUSIC,true);
 
 }
 
