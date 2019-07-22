@@ -110,23 +110,28 @@ void Knight::reviceAttack(float value) {
 	if (life <= 0) {
 		SetAnimation(4, side);
 
-		TSOTD::audio->Play(PLAYERDEATH);
+		//TSOTD::audio->Play(PLAYERDEATH);
 
 	}
 }
 
 void Knight::Draw()
 {
-	stringstream swordItemsText;
-	swordItemsText.str("");
-	swordItemsText << "Espadas:" << int(swordItems);;
-	verdana->Draw(50, 75, swordItemsText.str(), Color(1.0f, 1.0f, 1.0f, 1.0f));
+	stringstream scoreText;
+	scoreText.str("");
+	scoreText << "Score: " << int(kill);;
+	verdana->Draw(window->CenterX(), 25, scoreText.str(), Color(1.0f, 1.0f, 1.0f, 1.0f), Layer::FRONT,2.0f);
 
 	stringstream shieldsText;
 	shieldsText.str("");
-	shieldsText <<"Escudos:"<< int(shields);
+	shieldsText <<"Escudos: "<< int(shields);
 	verdana->Draw(50, 50, shieldsText.str(), Color(1.0f, 1.0f, 1.0f, 1.0f));
-	
+
+	stringstream swordItemsText;
+	swordItemsText.str("");
+	swordItemsText << "Espadas: " << int(swordItems);;
+	verdana->Draw(50, 75, swordItemsText.str(), Color(1.0f, 1.0f, 1.0f, 1.0f));
+
 	stringstream text;
 	text.str("");
 	text << int(life);

@@ -17,6 +17,22 @@
 
 Wall::Wall(float sizeX,float sizeY, float posX, float posY)
 {
+	if (sizeX <= 51) {
+		if(sizeY<250)
+		 sprite = new Sprite("Resources/wallY200.png");
+		else if (sizeY < 550)
+		 sprite = new Sprite("Resources/wallY500.png");
+		else
+		 sprite = new Sprite("Resources/wallY1500.png");
+	}
+	else {
+		if (sizeX < 250)
+			sprite = new Sprite("Resources/wallX200.png");
+		else if (sizeX < 550)
+			sprite = new Sprite("Resources/wallX500.png");
+		else
+			sprite = new Sprite("Resources/wallX1500.png");
+	}
 	width = sizeX;
 	height = sizeY;
 	bbox = new Rect(-sizeX/2.0f, -sizeY / 2.0f, sizeX / 2.0f, sizeY / 2.0f);

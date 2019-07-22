@@ -7,6 +7,7 @@
 #include "TileSet.h"
 #include "Knight.h"
 #include "EnemyKnight.h"
+#include "Door.h"
 #include "TSOTD.h"
 
 
@@ -29,7 +30,7 @@ private:
 
 public:
 	static Scene* scene;			// gerenciador de cena
-
+	Door* door;
 	void Init();					// inicializa jogo
 	void Update();					// atualiza lógica do jogo
 	void Draw();					// desenha jogo

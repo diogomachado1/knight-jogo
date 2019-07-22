@@ -42,14 +42,31 @@ void Sword::OnCollision(Object* obj)
 	{
 		EnemyKnight* enemyKnight = (EnemyKnight*)obj;
 		if (enemyKnight->animGet != 1) {
-			enemyKnight->reviceAttack(30 * (1 + (float(knight->swordItems) / 5)));
 			hit = true;
+			int dead = enemyKnight->reviceAttack(30 * (1 + (float(knight->swordItems) / 5)));
+		
+				knight->life += (30 * (1 + (float(knight->swordItems) / 5)) / 3);
+			if (knight->life > 100) {
+				knight->life = 100;
+			}
+			if (dead >= 0) {
+				knight->kill += enemyKnight->hard * 2;
+				knight->keys[dead] = true;
+			}
 		}
 		else if (enemyKnight->side == knight->side) {
 			if ((enemyKnight->x > x && knight->side == true) || (enemyKnight->x < x && knight->side == false)) {
 				hit = true;
-				enemyKnight->reviceAttack(60 * (1 + (float(knight->swordItems) / 5)));
+				int dead = enemyKnight->reviceAttack(60 * (1 + (float(knight->swordItems) / 5)));
+				knight->life += (30 * (1 + (float(knight->swordItems) / 5)) / 3);
+				if (dead >= 0) {
+					knight->kill += enemyKnight->hard * 2;
+					knight->keys[dead] = true;
+				}
 			}
+		}
+		else {
+			TSOTD::audio->Play(BLOCK);
 		}
 	}
 }
@@ -65,7 +82,7 @@ void Sword::Update()
 	if (knight->animGet == 3) {
 		if (knight->anim->Frame() == 8) {
 			knight->scene->Delete();
-			TSOTD::audio->Play(BLOCK);
+			//TSOTD::audio->Play(BLOCK);
 		}
 	}
 	if (knight->animGet != 3) {

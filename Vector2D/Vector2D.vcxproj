@@ -150,6 +150,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Audio.cpp" />
     <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="Door.cpp" />
     <ClCompile Include="EnemyKnight.cpp" />
     <ClCompile Include="EnemySword.cpp" />
     <ClCompile Include="Engine.cpp" />
@@ -183,6 +184,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Audio.h" />
     <ClInclude Include="Controller.h" />
+    <ClInclude Include="Door.h" />
     <ClInclude Include="EnemyKnight.h" />
     <ClInclude Include="EnemySword.h" />
     <ClInclude Include="Engine.h" />

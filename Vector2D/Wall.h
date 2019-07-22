@@ -7,18 +7,18 @@
 #include "Types.h"						// tipos específicos da engine
 #include "Object.h"						// interface de Object
 #include "Animation.h"					// animação de sprites
-
+#include "Sprite.h"
 // ---------------------------------------------------------------------------------
 
 class Wall : public Object
 {
 private:
 	//Sprite* platform;
+	Sprite* sprite;
 public:
 	Wall(float sizeX, float sizeY, float posX, float posY);
 	// construtor
 	~Wall();						// destrutor
-
 	float width;
 	float height;
 	void OnCollision(Object* obj);					// atualização do objeto
@@ -31,7 +31,7 @@ public:
 
 inline void Wall::Draw()
 {
-	//anim->Draw(x, y, z);
+	sprite->Draw(x, y, z, 1);
 }
 
 // ---------------------------------------------------------------------------------

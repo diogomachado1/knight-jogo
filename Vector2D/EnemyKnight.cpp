@@ -15,7 +15,7 @@
 
 // ---------------------------------------------------------------------------------
 
-EnemyKnight::EnemyKnight(Knight* knightIn, Wall* wall, Scene* scene, int hard)
+EnemyKnight::EnemyKnight(Knight* knightIn, Wall* wall, Scene* scene, int hard, int key)
 {
 
 	animListRight[0] = new Animation(new TileSet("Resources/newKnight/knightIdleR.png", 100, 100, 4, 4), 0.150f, true);
@@ -29,6 +29,7 @@ EnemyKnight::EnemyKnight(Knight* knightIn, Wall* wall, Scene* scene, int hard)
 	animListLeft[2] = new Animation(new TileSet("Resources/newKnight/knightWalkL.png", 100, 100, 8, 8), 0.090f, false);
 	animListLeft[3] = new Animation(new TileSet("Resources/newKnight/knightAttackL.png", 100, 100, 10, 10), 0.090f/hard, false);
 	animListLeft[4] = new Animation(new TileSet("Resources/newKnight/knightDeathL.png", 100, 100, 9, 9), 0.180f, false);
+	this->key = key;
 	this->hard = hard;
 	this->scene = scene;
 	height = 95;
@@ -113,11 +114,15 @@ void EnemyKnight::OnCollision(Object* obj)
 	//}
 }
 
-void EnemyKnight::reviceAttack(float value) {
+int EnemyKnight::reviceAttack(float value) {
 	this->life -= value;
 	if (life <= 0) {
 		life = 0;
 		SetAnimation(4, side);
+		return key;
+	}
+	else {
+		return -1;
 	}
 }
 

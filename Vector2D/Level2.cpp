@@ -36,7 +36,7 @@ void Level2::Init()
 
 	Wall* wall;
 	float sizeX, sizeY, posX, posY;
-	int enemy, hard;
+	int enemy, hard, key;
 
 	ifstream fin;
 
@@ -47,11 +47,11 @@ void Level2::Init()
 		if (fin.good())
 		{
 			// lê linha com informações da plataforma
-			fin >> sizeY; fin >> posX; fin >> posY; fin >> enemy; fin >> hard;
+			fin >> sizeY; fin >> posX; fin >> posY; fin >> enemy; fin >> hard; fin >> key;
 			wall = new Wall(sizeX, sizeY, posX, posY);
 			scene->Add(wall, STATIC);
 			if (enemy == 1) {
-				EnemyKnight* enemyKnight = new EnemyKnight(knight, wall, scene, hard);
+				EnemyKnight* enemyKnight = new EnemyKnight(knight, wall, scene, hard,key);
 				scene->Add(enemyKnight, MOVING);
 			}
 		}
