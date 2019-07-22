@@ -20,7 +20,7 @@ public:
 	// construtor
 	~EnemySword();						// destrutor
 
-	EnemyKnight* knight;
+	EnemyKnight* enemyknight;
 	bool hit = false;
 	float width;
 	float height;

@@ -20,7 +20,7 @@ class EnemyKnight : public Object
 {
 private:
 public:
-	EnemyKnight(Knight* knightIn, Wall * wall, Scene* scene,int hard);
+	EnemyKnight(Knight* knightIn, Wall * wall, Scene* scene,int hard, int key);
 	// construtor
 	~EnemyKnight();						// destrutor
 	
@@ -29,6 +29,7 @@ public:
 	Animation* animListLeft[10];
 	Knight* knight;
 	float hard;
+	int key = 0;
 	bool attackButtonPress;
 	bool stop;
 	float count;
@@ -45,7 +46,7 @@ public:
 	int animGet;
 	float targetX;
 	float targetY;
-	void reviceAttack(float value);
+	int reviceAttack(float value);
 	void ChangeTile(TileSet* tiles, bool loop);
 	void Stop();
 	void SetAnimation(int animationNumber, bool sideCurrent);

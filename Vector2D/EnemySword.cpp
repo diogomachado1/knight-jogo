@@ -18,7 +18,7 @@
 
 EnemySword::EnemySword(EnemyKnight* knightIn, float sizeX, float sizeY)
 {
-	knight = knightIn;
+	enemyknight = knightIn;
 	width = sizeX;
 	height = sizeY;
 	bbox = new Rect(-sizeX / 2.0f, -sizeY / 2.0f, sizeX / 2.0f, sizeY / 2.0f);
@@ -30,7 +30,7 @@ EnemySword::EnemySword(EnemyKnight* knightIn, float sizeX, float sizeY)
 
 EnemySword::~EnemySword()
 {
-	knight->swordOpen = false;
+	enemyknight->swordOpen = false;
 }
 
 // ---------------------------------------------------------------------------------
@@ -40,39 +40,44 @@ void EnemySword::OnCollision(Object* obj)
 
 	if (obj->Type() == PLAYER && hit == false)
 	{
-		Knight* enemyKnight = (Knight*)obj;
-		if (enemyKnight->animGet != 1) {
-			enemyKnight->reviceAttack(30);
+		Knight* knight = (Knight*)obj;
+		if (knight->animGet != 1) {
+			knight->reviceAttack(30);
 			hit = true;
+			TSOTD::audio->Play(PLAYERDAMAGE);
 		}
-		else if (enemyKnight->side == knight->side) {
-			if ((enemyKnight->x > x && knight->side == true) || (enemyKnight->x < x && knight->side == false)) {
+		else if (knight->side == enemyknight->side) {
+			if ((knight->x > x && enemyknight->side == true) || (knight->x < x && enemyknight->side == false)) {
 				hit = true;
-				enemyKnight->reviceAttack(60);
+				knight->reviceAttack(60);
+				TSOTD::audio->Play(PLAYERDAMAGE);
 			}
+		}
+		else {
+			TSOTD::audio->Play(BLOCK);
 		}
 	}
 }
 
 void EnemySword::Update()
 {
-	if (knight->side == true) {
-		MoveTo(knight->x + (knight->width / 2 + width / 2), knight->y - 12);
+	if (enemyknight->side == true) {
+		MoveTo(enemyknight->x + (enemyknight->width / 2 + width / 2), enemyknight->y - 12);
 	}
 	else {
-		MoveTo(knight->x - (knight->width / 2 + width / 2), knight->y - 12);
+		MoveTo(enemyknight->x - (enemyknight->width / 2 + width / 2), enemyknight->y - 12);
 	}
-	if (knight->animGet == 3) {
+	if (enemyknight->animGet == 3) {
 
 
-		if (knight->anim->Frame() == 8) {
-			knight->scene->Delete();
-			TSOTD::audio->Play(BLOCK);
+		if (enemyknight->anim->Frame() == 8) {
+			enemyknight->scene->Delete();
+			//TSOTD::audio->Play(BLOCK);
 
 		}
 	}
-	if (knight->animGet != 3) {
-		knight->scene->Delete();
+	if (enemyknight->animGet != 3) {
+		enemyknight->scene->Delete();
 	}
 }
 

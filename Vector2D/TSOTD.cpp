@@ -30,14 +30,14 @@ void TSOTD::Init()
 {
 	// cria sistema de áudio
 	audio = new Audio();
-	//audio->Add(MENU, "Resources/Menu.wav");
+	audio->Add(MENU, "Resources/Menu.wav");
 	audio->Add(MUSIC, "Resources/song.wav");
 	audio->Add(ATTACK, "Resources/attack.wav");
 	audio->Add(SWING, "Resources/swing.wav");
 	audio->Add(BLOCK, "Resources/block.wav");
-	audio->Add(PLAYERDAMAGE, "Resources/playerDamage.wav");
-	audio->Add(PLAYERDEATH, "Resources/playerDeath.wav");
-	audio->Add(ENEMYDEATH, "Resources/enemyDeath.wav");
+	audio->Add(PLAYERDAMAGE, "Resources/hit.wav");
+	/*audio->Add(PLAYERDEATH, "Resources/playerDeath.wav");
+	audio->Add(ENEMYDEATH, "Resources/enemyDeath.wav");*/
 
 	knight = new Knight();
 
@@ -72,7 +72,7 @@ void TSOTD::Finalize()
 {
 	level->Finalize();
 
-	delete audio;
+	//delete audio;
 	delete level;
 }
 // ------------------------------------------------------------------------------
@@ -92,7 +92,7 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 	engine->window->Cursor(IDC_CURSOR);
 
 	// configura dispositivo gráfico
-	//engine->graphics->VSync(true);
+	engine->graphics->VSync(true);
 	
 	// inicia o jogo
 	int status = engine->Start(new TSOTD());

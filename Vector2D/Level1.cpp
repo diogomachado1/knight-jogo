@@ -6,6 +6,7 @@
 #include "Engine.h"
 #include "Shield.h"
 #include "SwordItem.h"
+#include "Door.h"
 
 #include "fstream"
 using std::ifstream;
@@ -30,7 +31,7 @@ void Level1::Init()
 
 	Wall* wall;
 	float sizeX, sizeY, posX, posY;
-	int enemy, hard;
+	int enemy, hard, key;
 
 	ifstream fin;
 
@@ -41,11 +42,11 @@ void Level1::Init()
 		if (fin.good())
 		{
 			// l� linha com informa��es da plataforma
-			fin >> sizeY; fin >> posX; fin >> posY; fin >> enemy; fin >> hard;
+			fin >> sizeY; fin >> posX; fin >> posY; fin >> enemy; fin >> hard; fin >> key;
 			wall = new Wall(sizeX, sizeY, posX, posY);
 			scene->Add(wall, STATIC);
 			if (enemy==1) {
-				EnemyKnight* enemyKnight = new EnemyKnight(knight, wall, scene, hard);
+				EnemyKnight* enemyKnight = new EnemyKnight(knight, wall, scene, hard, key);
 				scene->Add(enemyKnight, MOVING);
 				
 			}
@@ -61,6 +62,11 @@ void Level1::Init()
 		fin >> sizeX;
 	}
 	fin.close();
+
+	door = new Door(1175, 100, 1,2,knight);
+	scene->Add(door, STATIC);
+	
+	
 
 	//Wall* floor1 = new Wall(600, 50, 300, 450);
 	//scene->Add(floor1, STATIC);
@@ -83,8 +89,9 @@ void Level1::Init()
 	//scene->Add(new Wall(50, 50, 500, 650), STATIC);
 	//scene->Add(new Wall(50, 50, 500, 650), STATIC);
 	//knight->MoveTo(500, 0);
+
 	// toca m�sica
-	//TSOTD::audio->Play(MUSIC,true);
+	TSOTD::audio->Play(MUSIC,true);
 
 }
 
@@ -105,7 +112,6 @@ void Level1::Update()
 	if (knightDied == true)
 		gameOver->Draw(float(window->CenterX()), float(window->CenterY()), Layer::FRONT);
 
-
 	scene->Update();
 	scene->CollisionDetection();
 	if (window->KeyUp('B'))
@@ -115,12 +121,12 @@ void Level1::Update()
 	{
 		ctrlKeyB = false;
 		TSOTD::NextLevel<Home>();
+	} else if (door->newLevel == 2) {
+			ctrlKeyB = false;
+			TSOTD::NextLevel<Level2>();
 	}
-	if (ctrlKeyB && window->KeyDown('M'))
-	{
-		ctrlKeyB = false;
-		TSOTD::NextLevel<Level2>();
-	}
+	
+
 }
 
 // ------------------------------------------------------------------------------
@@ -129,7 +135,6 @@ void Level1::Draw()
 {
 	//backg->Draw(float(window->CenterX()), float(window->CenterY()), Layer::BACK);
 	scene->Draw();
-	counter->Draw(float(window->CenterX()), 50, Layer::BACK);
 	Engine::renderer->BeginPixels();
 	scene->Begin();
 	Object* obj = nullptr;
