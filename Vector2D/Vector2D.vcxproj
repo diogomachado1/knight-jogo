@@ -170,6 +170,7 @@
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Sword.cpp" />
+    <ClCompile Include="swordItem.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TileSet.cpp" />
     <ClCompile Include="Timer.cpp" />
@@ -203,6 +204,7 @@
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Sword.h" />
+    <ClInclude Include="swordItem.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TileSet.h" />
     <ClInclude Include="Timer.h" />
@@ -224,6 +226,11 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resources.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Resources\Level1.txt" />
+    <Text Include="Resources\Level2.txt" />
+    <Text Include="Resources\Level3.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

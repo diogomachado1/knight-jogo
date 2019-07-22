@@ -15,21 +15,21 @@
 
 // ---------------------------------------------------------------------------------
 
-EnemyKnight::EnemyKnight(Knight* knightIn, Wall* wall, Scene* scene, float velAtk, float velMov)
+EnemyKnight::EnemyKnight(Knight* knightIn, Wall* wall, Scene* scene, int hard)
 {
 
 	animListRight[0] = new Animation(new TileSet("Resources/newKnight/knightIdleR.png", 100, 100, 4, 4), 0.150f, true);
 	animListRight[1] = new Animation(new TileSet("Resources/newKnight/knightBlockR.png", 100, 100, 7, 7), 0.050f, false);
 	animListRight[2] = new Animation(new TileSet("Resources/newKnight/knightWalkR.png", 100, 100, 8, 8), 0.090f, false);
-	animListRight[3] = new Animation(new TileSet("Resources/newKnight/knightAttackR.png", 100, 100, 10, 10), 0.090f, false);
+	animListRight[3] = new Animation(new TileSet("Resources/newKnight/knightAttackR.png", 100, 100, 10, 10), 0.090f/hard, false);
 	animListRight[4] = new Animation(new TileSet("Resources/newKnight/knightDeathR.png", 100, 100, 9, 9), 0.180f, false);
 
 	animListLeft[0] = new Animation(new TileSet("Resources/newKnight/knightIdleL.png", 100, 100, 4, 4), 0.150f, true);
 	animListLeft[1] = new Animation(new TileSet("Resources/newKnight/knightBlockL.png", 100, 100, 7, 7), 0.050f, false);
 	animListLeft[2] = new Animation(new TileSet("Resources/newKnight/knightWalkL.png", 100, 100, 8, 8), 0.090f, false);
-	animListLeft[3] = new Animation(new TileSet("Resources/newKnight/knightAttackL.png", 100, 100, 10, 10), 0.090f, false);
+	animListLeft[3] = new Animation(new TileSet("Resources/newKnight/knightAttackL.png", 100, 100, 10, 10), 0.090f/hard, false);
 	animListLeft[4] = new Animation(new TileSet("Resources/newKnight/knightDeathL.png", 100, 100, 9, 9), 0.180f, false);
-	
+	this->hard = hard;
 	this->scene = scene;
 	height = 95;
 	width = 35;
@@ -40,7 +40,6 @@ EnemyKnight::EnemyKnight(Knight* knightIn, Wall* wall, Scene* scene, float velAt
 	side = true;  //true = direta, false = esquerda
 	bbox = new Rect(-width / 2.0f, -height / 2.0f, width / 2.0f, height / 2.0f);
 	gravity = 0;
-	interAtck = velMov;
 	knight = knightIn;
 	type = ENEMY;
 	stop = false;
@@ -148,11 +147,11 @@ void EnemyKnight::Update()
 			if (delta >55 && animGet != 3) {
 				count = 0;
 				SetAnimation(2, sideCurrent);
-				Translate((((targetX - x) / delta) * 100) * gameTime, 0);
+				Translate((((targetX - x) / delta) * 100) * gameTime*(1+ float(hard/5)), 0);
 			}
 			else {
 				count += gameTime;
-				if (count >= interAtck) {
+				if (count >= float(1 / hard)) {
 					if (anim->Frame() >= 10) {
 						count = 0;
 					}

@@ -39,6 +39,7 @@ public:
 	Animation* animListRight[10];
 	Animation* animListLeft[10];
 	int shields=0;
+	int swordItems = 0;
 	Scene* scene;
 	bool swordOpen;
 	bool attackButtonPress;

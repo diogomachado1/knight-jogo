@@ -99,12 +99,11 @@ void Knight::SetAnimation(int animationNumber, bool sideCurrent) {
 }
 void Knight::jump()
 {
-	jumpTime = -700;
-
+	jumpTime = -600;
 }
 
 void Knight::reviceAttack(float value) {
-	this->life -= value;
+	this->life -= (value/(1+(float(shields)/5)));
 	if (life <= 0) {
 		SetAnimation(4, side);
 	}
@@ -112,16 +111,21 @@ void Knight::reviceAttack(float value) {
 
 void Knight::Draw()
 {
+	stringstream swordItemsText;
+	swordItemsText.str("");
+	swordItemsText << "Espadas:" << int(swordItems);;
+	verdana->Draw(50, 75, swordItemsText.str(), Color(1.0f, 1.0f, 1.0f, 1.0f));
+
 	stringstream shieldsText;
 	shieldsText.str("");
-	shieldsText << int(shields);
+	shieldsText <<"Escudos:"<< int(shields);
 	verdana->Draw(50, 50, shieldsText.str(), Color(1.0f, 1.0f, 1.0f, 1.0f));
-	
+
 	stringstream text;
 	text.str("");
 	text << int(life);
 	verdana->Draw(x, y - 50, text.str(), Color(1.0f, 1.0f, 1.0f, 1.0f));
-	
+
 	anim->Draw(x, y, z, scale);
 }
 
@@ -199,7 +203,7 @@ void Knight::Update()
 			}*/
 			if (window->KeyDown(0x53))
 			{
-				if (jumpTime<0) {
+				if (jumpTime < 0) {
 					jumpTime = 0;
 				}
 				moving(0, 200, side);

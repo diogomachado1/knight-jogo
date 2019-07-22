@@ -17,7 +17,7 @@
 #include "Types.h"										// tipos específicos da engine
 #include "Object.h"										// interface de Object
 #include "Sprite.h"										// desenho de sprites
-
+#include "Scene.h"
 // ---------------------------------------------------------------------------------
 
 
@@ -29,9 +29,10 @@ private:
 	Sprite* shield;									// sprite da plataforma
 
 public:
-	Shield(float posX, float posY);	// construtor	
-	~Shield();										// destrutor
-
+	Shield(float posX, float posY, Scene* scene);	// construtor	
+	~Shield();	
+	// destrutor
+	Scene* scene;
 	void OnCollision(Object* obj);
 	void Update();										// atualização do objeto
 	void Draw();										// desenho do objeto
