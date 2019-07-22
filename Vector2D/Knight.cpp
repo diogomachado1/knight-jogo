@@ -90,13 +90,15 @@ void Knight::SetAnimation(int animationNumber, bool sideCurrent) {
 		if (anim->Frame() < 6) {
 			anim->NextFrame();
 		}
+	} else if (animGet == 4) {
+		if (anim->Frame() < 8) {
+			anim->NextFrame();
+		}
 	}
 	else {
 		anim->NextFrame();
 	}
-	if (animGet == 4 && anim->Frame() == 8) {
-		scene->Delete();
-	}
+	
 }
 void Knight::jump()
 {

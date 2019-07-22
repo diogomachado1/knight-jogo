@@ -38,7 +38,7 @@ void SwordItem::Update()
 {
 	if (TSOTD::knight->swordsArray[number] == true) {
 		TSOTD::knight->scene->Delete();
-	}\
+	}
 
 }
 

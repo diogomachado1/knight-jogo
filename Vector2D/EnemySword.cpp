@@ -16,8 +16,9 @@
 // ---------------------------------------------------------------------------------
 
 
-EnemySword::EnemySword(EnemyKnight* knightIn, float sizeX, float sizeY)
+EnemySword::EnemySword(EnemyKnight* knightIn, float sizeX, float sizeY,float damage)
 {
+	this->damage = damage;
 	enemyknight = knightIn;
 	width = sizeX;
 	height = sizeY;
@@ -43,14 +44,14 @@ void EnemySword::OnCollision(Object* obj)
 		Knight* knight = (Knight*)obj;
 		if (knight->animGet != 4) {
 			if (knight->animGet != 1) {
-				knight->reviceAttack(30);
+				knight->reviceAttack(damage);
 				hit = true;
 				TSOTD::audio->Play(PLAYERDAMAGE);
 			}
 			else if (knight->side == enemyknight->side) {
 				if ((knight->x > x && enemyknight->side == true) || (knight->x < x && enemyknight->side == false)) {
 					hit = true;
-					knight->reviceAttack(60);
+					knight->reviceAttack(damage*2);
 					TSOTD::audio->Play(PLAYERDAMAGE);
 				}
 			}

@@ -24,6 +24,7 @@ public:
 	~Door();						// destrutor
 	float width;
 	float height;
+	float rotation;
 	int nextLevel;
 	Knight* knight;
 	int currentLevel;
@@ -38,7 +39,7 @@ public:
 
 inline void Door::Draw()
 {
-	sprite->Draw(x, y, z, 1);
+	sprite->Draw(x, y, z, 1,rotation);
 }
 
 // ---------------------------------------------------------------------------------

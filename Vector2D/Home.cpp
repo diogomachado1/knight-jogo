@@ -5,6 +5,7 @@
 #include "Level2.h"
 #include "Level3.h"
 #include "Level4.h"
+#include "Level5.h"
 #include "Knight.h"
 
 // ------------------------------------------------------------------------------
@@ -38,7 +39,7 @@ void Home::Update()
 	// passa ao primeiro nível com ENTER
 	if (window->KeyDown(VK_RETURN)) {
 		TSOTD::knight->MoveTo(100, 700);
-		TSOTD::NextLevel<Level1>();
+		TSOTD::NextLevel<Level1>(); 
 
 	}
 }
