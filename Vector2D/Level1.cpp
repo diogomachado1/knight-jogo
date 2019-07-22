@@ -22,7 +22,7 @@ void Level1::Init()
 {
 	scene = new Scene();
 
-	//backg = new Sprite("Resources/background.png");
+	backg = new Sprite("Resources/battleground.png");
 	keyCtrl = false;
 	this->knight = TSOTD::knight;
 	this->knight->scene = scene;
@@ -64,8 +64,8 @@ void Level1::Init()
 	scene->Add(door, STATIC);
 	
 	
-	scene->Add(new Shield(90, 400, scene,0), STATIC);
-	scene->Add(new SwordItem(70, 400, scene,0), STATIC);
+	scene->Add(new Shield(90, 350, scene,0), STATIC);
+	scene->Add(new SwordItem(70, 350, scene,0), STATIC);
 	TSOTD::audio->Play(MUSIC,true);
 
 }
@@ -89,8 +89,23 @@ void Level1::Update()
 
 	scene->Update();
 	scene->CollisionDetection();
-	if (window->KeyUp('B'))
-		ctrlKeyB = true;
+
+	if (window->KeyUp('V')) {
+		ctrlKeyV = true;
+
+	}
+
+	if (ctrlKeyV && window->KeyDown('V'))
+	{
+		ctrlKeyV = false;
+		viewBBox = !viewBBox;
+	}
+
+	if (window->KeyUp('B')) {
+		ctrlKeyV = true;
+
+	}
+
 
 	if (window->KeyDown('O'))
 	{
@@ -115,15 +130,19 @@ void Level1::Update()
 
 void Level1::Draw()
 {
-	//backg->Draw(float(window->CenterX()), float(window->CenterY()), Layer::BACK);
+	backg->Draw(float(window->CenterX()), float(window->CenterY()), Layer::BACK);
 	scene->Draw();
-	Engine::renderer->BeginPixels();
-	scene->Begin();
-	Object* obj = nullptr;
-	while (obj = scene->Next())
-		if (obj->bbox)
-			Engine::renderer->Draw(obj->bbox, 0xffff00ff);
-	Engine::renderer->EndPixels();
+	if (viewBBox == true) {
+		Engine::renderer->BeginPixels();
+		scene->Begin();
+		Object* obj = nullptr;
+		while (obj = scene->Next())
+			if (obj->bbox)
+				Engine::renderer->Draw(obj->bbox, 0xffff00ff);
+		Engine::renderer->EndPixels();
+
+	}
+	
 }
 
 // ------------------------------------------------------------------------------

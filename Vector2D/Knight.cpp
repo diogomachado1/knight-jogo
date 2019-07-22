@@ -123,22 +123,22 @@ void Knight::Draw()
 	stringstream scoreText;
 	scoreText.str("");
 	scoreText << "Score: " << int(kill);;
-	verdana->Draw(window->CenterX(), 25, scoreText.str(), Color(1.0f, 1.0f, 1.0f, 1.0f), Layer::FRONT,2.0f);
+	verdana->Draw(window->CenterX(), 55, scoreText.str(), Color(1.0f, 0.0f, 0.0f, 1.0f), Layer::FRONT,2.0f);
 
 	stringstream shieldsText;
 	shieldsText.str("");
 	shieldsText <<"Escudos: "<< int(shields);
-	verdana->Draw(50, 50, shieldsText.str(), Color(1.0f, 1.0f, 1.0f, 1.0f));
+	verdana->Draw(window->CenterX() , 75, shieldsText.str(), Color(1.0f, 0.0f, 0.0f, 1.0f));
 
 	stringstream swordItemsText;
 	swordItemsText.str("");
 	swordItemsText << "Espadas: " << int(swordItems);;
-	verdana->Draw(50, 75, swordItemsText.str(), Color(1.0f, 1.0f, 1.0f, 1.0f));
+	verdana->Draw(window->CenterX(), 100, swordItemsText.str(), Color(1.0f, 0.0f, 0.0f, 1.0f));
 
 	stringstream text;
 	text.str("");
 	text << int(life);
-	verdana->Draw(x, y - 50, text.str(), Color(1.0f, 1.0f, 1.0f, 1.0f));
+	verdana->Draw(x, y - 50, text.str(), Color(1.0f, 0.0f, 0.0f, 1.0f));
 	
 	anim->Draw(x, y, z, scale);
 }
