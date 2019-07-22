@@ -41,7 +41,6 @@ void Level1::Init()
 	{
 		if (fin.good())
 		{
-			// l� linha com informa��es da plataforma
 			fin >> sizeY; fin >> posX; fin >> posY; fin >> enemy; fin >> hard; fin >> key;
 			wall = new Wall(sizeX, sizeY, posX, posY);
 			scene->Add(wall, STATIC);
@@ -53,7 +52,6 @@ void Level1::Init()
 		}
 		else
 		{
-			// ignora coment�rios
 			fin.clear();
 			char temp[80];
 			fin.getline(temp, 80);
@@ -67,30 +65,8 @@ void Level1::Init()
 	scene->Add(door, STATIC);
 	
 	
-
-	//Wall* floor1 = new Wall(600, 50, 300, 450);
-	//scene->Add(floor1, STATIC);
-	//EnemyKnight* enemyKnight = new EnemyKnight(knight, floor1,scene, 0.500f, 0.2f);
-	//scene->Add(enemyKnight, MOVING);
-
-
-	//Wall* floor2 = new Wall(600, 50, 1150, 450);
-	//scene->Add(floor2, STATIC);
-	//EnemyKnight* enemyKnight2 = new EnemyKnight(knight, floor2, scene, 0.100f, 1);
-	//scene->Add(enemyKnight2, MOVING);
-
-	//scene->Add(new Shield(320, 500, scene), STATIC);
-	//scene->Add(new SwordItem(370, 500, scene), STATIC);
-
-	//scene->Add(new Wall(1400, 50, 500, 700), STATIC);
-	//scene->Add(new Wall(50, 2000, -25, 0), STATIC);
-	////scene->Add(new Wall(1000, 50, 500, 700), STATIC);
-	//scene->Add(new Wall(100, 50, 650, 600), STATIC);
-	//scene->Add(new Wall(50, 50, 500, 650), STATIC);
-	//scene->Add(new Wall(50, 50, 500, 650), STATIC);
-	//knight->MoveTo(500, 0);
-
-	// toca m�sica
+	scene->Add(new Shield(90, 400, scene,0), STATIC);
+	scene->Add(new SwordItem(70, 400, scene,0), STATIC);
 	TSOTD::audio->Play(MUSIC,true);
 
 }

@@ -164,6 +164,8 @@
     <ClCompile Include="lanceGuard.cpp" />
     <ClCompile Include="Level1.cpp" />
     <ClCompile Include="Level2.cpp" />
+    <ClCompile Include="Level3.cpp" />
+    <ClCompile Include="Level4.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -198,6 +200,8 @@
     <ClInclude Include="lanceGuard.h" />
     <ClInclude Include="Level1.h" />
     <ClInclude Include="Level2.h" />
+    <ClInclude Include="Level3.h" />
+    <ClInclude Include="Level4.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Resources.h" />
@@ -233,6 +237,7 @@
     <Text Include="Resources\Level1.txt" />
     <Text Include="Resources\Level2.txt" />
     <Text Include="Resources\Level3.txt" />
+    <Text Include="Resources\Level4.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

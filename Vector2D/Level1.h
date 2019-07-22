@@ -1,5 +1,5 @@
-#ifndef _LEVEL1_H_
-#define _LEVEL1_H_
+#ifndef _LEVEL3_H_
+#define _LEVEL3_H_
 
 #include "Game.h"
 #include "Scene.h"
@@ -24,7 +24,6 @@ private:
 	float timer = 0;
 	bool ctrlKeyB = true;
 	bool ctrlKeyV = true;
-	Animation* counter = new Animation(new TileSet("Resources/counter.png", 70, 100, 5, 5), 0.090f, false);
 	Sprite* gameOver = new Sprite("Resources/game over.png");
 	int death = 0;
 

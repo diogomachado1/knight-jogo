@@ -126,6 +126,12 @@
     <ClCompile Include="Door.cpp">
       <Filter>Game\Arquivos de Origem</Filter>
     </ClCompile>
+    <ClCompile Include="Level3.cpp">
+      <Filter>Game\Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Level4.cpp">
+      <Filter>Game\Arquivos de Origem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Controller.h">
@@ -230,6 +236,12 @@
     <ClInclude Include="Door.h">
       <Filter>Game\Arquivos de Cabeçalho</Filter>
     </ClInclude>
+    <ClInclude Include="Level3.h">
+      <Filter>Game\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Level4.h">
+      <Filter>Game\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Pixel.hlsl">
@@ -252,6 +264,9 @@
       <Filter>Game\Arquivos de Recurso</Filter>
     </Text>
     <Text Include="Resources\Level3.txt">
+      <Filter>Game\Arquivos de Recurso</Filter>
+    </Text>
+    <Text Include="Resources\Level4.txt">
       <Filter>Game\Arquivos de Recurso</Filter>
     </Text>
   </ItemGroup>
