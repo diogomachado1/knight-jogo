@@ -15,6 +15,7 @@ void Home::Init()
 {
 	backg = new Sprite("Resources/titleScreen.jpg");
 	TSOTD::knight = new Knight();
+	
 }
 
 // ------------------------------------------------------------------------------
@@ -35,8 +36,11 @@ void Home::Update()
 		window->Close();
 
 	// passa ao primeiro nível com ENTER
-	if (window->KeyDown(VK_RETURN))
+	if (window->KeyDown(VK_RETURN)) {
+		TSOTD::knight->MoveTo(100, 700);
 		TSOTD::NextLevel<Level1>();
+
+	}
 }
 
 // ------------------------------------------------------------------------------

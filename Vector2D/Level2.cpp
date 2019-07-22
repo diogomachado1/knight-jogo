@@ -28,7 +28,6 @@ void Level2::Init()
 	this->knight = TSOTD::knight;
 	this->knight->scene = scene;
 	scene->Add(knight, MOVING);
-	knight->MoveTo(window->CenterX() - 300, window->CenterY());
 	
 	scene = new Scene();
 
@@ -37,7 +36,6 @@ void Level2::Init()
 	this->knight = TSOTD::knight;
 	this->knight->scene = scene;
 	scene->Add(knight, MOVING);
-	knight->MoveTo(window->CenterX() - 300, window->CenterY());
 
 	Wall* wall;
 	float sizeX, sizeY, posX, posY;
@@ -118,19 +116,18 @@ void Level2::Update()
 		TSOTD::NextLevel<Home>();
 	}
 	else if (door->newLevel == 1) {
-		ctrlKeyB = false;
+		knight->MoveTo(1100, 100);
 		TSOTD::NextLevel<Level1>();
 	}
 	else if (door2->newLevel == 3) {
-		ctrlKeyB = false;
+		knight->MoveTo(100, 700);
 		TSOTD::NextLevel<Level3>();
 	}
 	else if (door3->newLevel == 4) {
-		ctrlKeyB = false;
+		knight->MoveTo(100, 100);
 		TSOTD::NextLevel<Level4>();
 	}
 	else if (door4->newLevel == 5) {
-		ctrlKeyB = false;
 		TSOTD::NextLevel<Home>();
 	}
 

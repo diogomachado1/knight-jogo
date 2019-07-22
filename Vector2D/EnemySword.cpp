@@ -41,20 +41,22 @@ void EnemySword::OnCollision(Object* obj)
 	if (obj->Type() == PLAYER && hit == false)
 	{
 		Knight* knight = (Knight*)obj;
-		if (knight->animGet != 1) {
-			knight->reviceAttack(30);
-			hit = true;
-			TSOTD::audio->Play(PLAYERDAMAGE);
-		}
-		else if (knight->side == enemyknight->side) {
-			if ((knight->x > x && enemyknight->side == true) || (knight->x < x && enemyknight->side == false)) {
+		if (knight->animGet != 4) {
+			if (knight->animGet != 1) {
+				knight->reviceAttack(30);
 				hit = true;
-				knight->reviceAttack(60);
 				TSOTD::audio->Play(PLAYERDAMAGE);
 			}
-		}
-		else {
-			TSOTD::audio->Play(BLOCK);
+			else if (knight->side == enemyknight->side) {
+				if ((knight->x > x && enemyknight->side == true) || (knight->x < x && enemyknight->side == false)) {
+					hit = true;
+					knight->reviceAttack(60);
+					TSOTD::audio->Play(PLAYERDAMAGE);
+				}
+			}
+			else {
+				TSOTD::audio->Play(BLOCK);
+			}
 		}
 	}
 }

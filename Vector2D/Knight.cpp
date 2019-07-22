@@ -108,6 +108,7 @@ void Knight::reviceAttack(float value) {
 	this->life -= (value/(1+(float(shields)/5)));
 
 	if (life <= 0) {
+		life = 0;
 		SetAnimation(4, side);
 
 		//TSOTD::audio->Play(PLAYERDEATH);

@@ -119,7 +119,6 @@ int EnemyKnight::reviceAttack(float value) {
 	if (life <= 0) {
 		life = 0;
 		SetAnimation(4, side);
-		bbox = new Rect(-1 / 2.0f, -1 / 2.0f, 1 / 2.0f, 1 / 2.0f);;
 		return key;
 	}
 	else {
