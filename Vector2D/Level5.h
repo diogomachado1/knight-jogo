@@ -17,14 +17,16 @@ class Level5 : public Game
 private:
 	Sprite* backg = nullptr;		// sprite de fundo
 	bool keyCtrl = false;			// controla pressionamento de teclas
-	bool viewBBox = true;
+	bool viewBBox = false;
 	bool knightDied = false;
 	Knight* knight = nullptr;
+	EnemyKnight* boss = nullptr;
 	//EnemyKnight* enemyKnight = nullptr;
 	float timer = 0;
 	bool ctrlKeyB = true;
 	bool ctrlKeyV = true;
 	Sprite* gameOver = new Sprite("Resources/game over.png");
+	Sprite* congrats = new Sprite("Resources/congrats.png");
 	int death = 0;
 
 public:

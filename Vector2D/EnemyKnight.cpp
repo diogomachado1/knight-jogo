@@ -156,7 +156,7 @@ void EnemyKnight::Update()
 	bool sideCurrent;
 	powerCooldown += gameTime;
 	powerStageCooldown += gameTime;
-	if (hard == 4 && powerCooldown > 5.0f && count<0.15) {
+	if (hard == 4 && powerCooldown > 5.0f && count<0.15 && life>0) {
 		if (animGet != 3) {
 			SetAnimation(3, side);
 		}

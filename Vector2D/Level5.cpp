@@ -22,7 +22,7 @@ void Level5::Init()
 {
 	scene = new Scene();
 
-	//backg = new Sprite("Resources/background.png");
+	backg = new Sprite("Resources/battleground.png");
 	keyCtrl = false;
 	this->knight = TSOTD::knight;
 	this->knight->scene = scene;
@@ -60,6 +60,10 @@ void Level5::Init()
 	}
 	fin.close();
 
+	wall = new Wall(1500, 50, 750, 0);
+	boss = new EnemyKnight(knight, wall, scene, 4, 0);
+	scene->Add(boss, MOVING);
+
 	door = new Door(25, 100, 5, 2, knight);
 	scene->Add(door, STATIC);
 
@@ -84,10 +88,31 @@ void Level5::Update()
 	if (knightDied == true)
 		gameOver->Draw(float(window->CenterX()), float(window->CenterY()), Layer::FRONT);
 
+	if (boss->life <= 0)
+		congrats->Draw(float(window->CenterX()), float(window->CenterY()), Layer::FRONT);
+
 	scene->Update();
 	scene->CollisionDetection();
+
+
+	if (window->KeyUp('V')) {
+		ctrlKeyV = true;
+
+	}
+
+	if (ctrlKeyV && window->KeyDown('V'))
+	{
+		ctrlKeyV = false;
+		viewBBox = !viewBBox;
+	}
 	if (window->KeyUp('B'))
 		ctrlKeyB = true;
+	
+	if (window->KeyDown('O'))
+	{
+		boss->life = 0;
+		boss->reviceAttack(1);
+	}
 
 	if (ctrlKeyB && window->KeyDown('B'))
 	{
@@ -96,7 +121,7 @@ void Level5::Update()
 	}
 	else if (door->newLevel == 2) {
 		ctrlKeyB = false;
-		knight->MoveTo(1100, 700);
+		knight->MoveTo(1100, 400);
 		TSOTD::NextLevel<Level2>();
 	}
 
@@ -107,15 +132,18 @@ void Level5::Update()
 
 void Level5::Draw()
 {
-	//backg->Draw(float(window->CenterX()), float(window->CenterY()), Layer::BACK);
+	backg->Draw(float(window->CenterX()), float(window->CenterY()), Layer::BACK);
 	scene->Draw();
-	Engine::renderer->BeginPixels();
-	scene->Begin();
-	Object* obj = nullptr;
-	while (obj = scene->Next())
-		if (obj->bbox)
-			Engine::renderer->Draw(obj->bbox, 0xffff00ff);
-	Engine::renderer->EndPixels();
+	if (viewBBox == true) {
+		Engine::renderer->BeginPixels();
+		scene->Begin();
+		Object* obj = nullptr;
+		while (obj = scene->Next())
+			if (obj->bbox)
+				Engine::renderer->Draw(obj->bbox, 0xffff00ff);
+		Engine::renderer->EndPixels();
+
+	}
 }
 
 // ------------------------------------------------------------------------------
