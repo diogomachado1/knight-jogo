@@ -1,0 +1,14 @@
+// Knight
+// Criação:		14 Fev 2013
+// Atualização:	14 Fev 2013
+// Descrição:   Posição das plataformas do nível 1
+//
+// 200 500 1500 comprimento
+// 50			largura
+//
+//	sizeX	sizeY	posX	posY
+	500		50		250		425
+	50		200		475		550
+	500		50		750		625
+	200		50		750		300
+	200		50		1200	500

@@ -42,13 +42,13 @@ void Sword::OnCollision(Object* obj)
 	{
 		EnemyKnight* enemyKnight = (EnemyKnight*)obj;
 		if (enemyKnight->animGet != 1) {
-			enemyKnight->reviceAttack(30);
+			enemyKnight->reviceAttack(30 * (1 + (float(knight->swordItems) / 5)));
 			hit = true;
 		}
 		else if (enemyKnight->side == knight->side) {
 			if ((enemyKnight->x > x && knight->side == true) || (enemyKnight->x < x && knight->side == false)) {
 				hit = true;
-				enemyKnight->reviceAttack(60);
+				enemyKnight->reviceAttack(60 * (1 + (float(knight->swordItems) / 5)));
 			}
 		}
 	}

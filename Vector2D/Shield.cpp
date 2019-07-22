@@ -5,8 +5,9 @@
 
 // ---------------------------------------------------------------------------------
 
-Shield::Shield(float posX, float posY)
+Shield::Shield(float posX, float posY, Scene* scene)
 {
+	this->scene = scene;
 	shield = new Sprite("Resources/shield.png");
 	scale = 0.3;
 	bbox = new Rect((-shield->Width() * scale) / 2.0f, (-shield->Height() * scale) / 2.0f, (shield->Width() * scale) / 2.0f, (shield->Height() * scale) / 2.0f);
@@ -28,6 +29,8 @@ void Shield::OnCollision(Object* obj)
 	{
 		Knight* knight = (Knight*)obj;
 		knight->shields++;
+		scene->Remove(this, STATIC);
+		delete this;
 	}
 }
 // -------------------------------------------------------------------------------

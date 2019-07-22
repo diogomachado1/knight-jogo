@@ -11,7 +11,7 @@
 void Home::Init()
 {
 	backg = new Sprite("Resources/titleScreen.jpg");
-	this->knight = new Knight();
+	TSOTD::knight = new Knight();
 }
 
 // ------------------------------------------------------------------------------

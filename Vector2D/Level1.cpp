@@ -5,6 +5,10 @@
 #include "Wall.h"
 #include "Engine.h"
 #include "Shield.h"
+#include "SwordItem.h"
+
+#include "fstream"
+using std::ifstream;
 
 // -----------------------------------------------------------------------------
 
@@ -23,28 +27,60 @@ void Level1::Init()
 	this->knight->scene = scene;
 	scene->Add(knight, MOVING);
 	knight->MoveTo(window->CenterX() - 300, window->CenterY());
-	for (int i = 0; i < 2000; i += 50) {
-		scene->Add(new Wall(10, 10, i, 200), STATIC);
+
+	Wall* wall;
+	float sizeX, sizeY, posX, posY;
+	int enemy, hard;
+
+	ifstream fin;
+
+	fin.open("Resources/Level1.txt");
+	fin >> sizeX;
+	while (!fin.eof())
+	{
+		if (fin.good())
+		{
+			// lê linha com informações da plataforma
+			fin >> sizeY; fin >> posX; fin >> posY; fin >> enemy; fin >> hard;
+			wall = new Wall(sizeX, sizeY, posX, posY);
+			scene->Add(wall, STATIC);
+			if (enemy==1) {
+				EnemyKnight* enemyKnight = new EnemyKnight(knight, wall, scene, hard);
+				scene->Add(enemyKnight, MOVING);
+			}
+		}
+		else
+		{
+			// ignora comentários
+			fin.clear();
+			char temp[80];
+			fin.getline(temp, 80);
+		}
+
+		fin >> sizeX;
 	}
+	fin.close();
 
-	Wall* floor1 = new Wall(600, 50, 300, 450);
-	scene->Add(floor1, STATIC);
-	EnemyKnight* enemyKnight = new EnemyKnight(knight, floor1,scene, 0.100f, 1);
-	scene->Add(enemyKnight, MOVING);
+	//Wall* floor1 = new Wall(600, 50, 300, 450);
+	//scene->Add(floor1, STATIC);
+	//EnemyKnight* enemyKnight = new EnemyKnight(knight, floor1,scene, 0.500f, 0.2f);
+	//scene->Add(enemyKnight, MOVING);
 
 
-	Wall* floor2 = new Wall(600, 50, 1150, 450);
-	scene->Add(floor2, STATIC);
-	EnemyKnight* enemyKnight2 = new EnemyKnight(knight, floor2, scene, 0.100f, 1);
-	scene->Add(enemyKnight2, MOVING);
+	//Wall* floor2 = new Wall(600, 50, 1150, 450);
+	//scene->Add(floor2, STATIC);
+	//EnemyKnight* enemyKnight2 = new EnemyKnight(knight, floor2, scene, 0.100f, 1);
+	//scene->Add(enemyKnight2, MOVING);
 
-	scene->Add(new Shield(320, 500), STATIC);
-	scene->Add(new Wall(1400, 50, 500, 700), STATIC);
-	scene->Add(new Wall(50, 2000, -25, 0), STATIC);
-	//scene->Add(new Wall(1000, 50, 500, 700), STATIC);
-	scene->Add(new Wall(100, 50, 650, 600), STATIC);
-	scene->Add(new Wall(50, 50, 500, 650), STATIC);
-	scene->Add(new Wall(50, 50, 500, 650), STATIC);
+	//scene->Add(new Shield(320, 500, scene), STATIC);
+	//scene->Add(new SwordItem(370, 500, scene), STATIC);
+
+	//scene->Add(new Wall(1400, 50, 500, 700), STATIC);
+	//scene->Add(new Wall(50, 2000, -25, 0), STATIC);
+	////scene->Add(new Wall(1000, 50, 500, 700), STATIC);
+	//scene->Add(new Wall(100, 50, 650, 600), STATIC);
+	//scene->Add(new Wall(50, 50, 500, 650), STATIC);
+	//scene->Add(new Wall(50, 50, 500, 650), STATIC);
 	//knight->MoveTo(500, 0);
 
 }

@@ -20,7 +20,7 @@ class EnemyKnight : public Object
 {
 private:
 public:
-	EnemyKnight(Knight* knightIn, Wall * wall, Scene* scene,float velAtk, float velMov);
+	EnemyKnight(Knight* knightIn, Wall * wall, Scene* scene,int hard);
 	// construtor
 	~EnemyKnight();						// destrutor
 	
@@ -28,7 +28,7 @@ public:
 	Animation* animListRight[10];
 	Animation* animListLeft[10];
 	Knight* knight;
-	float interAtck = 4;
+	float hard;
 	bool attackButtonPress;
 	bool stop;
 	float count;
@@ -60,10 +60,21 @@ public:
 
 inline void EnemyKnight::Draw()
 {
+	Color* cor;
+	if (hard == 1) {
+		cor = &Color(0.0f, 0.5f, 0.0f, 1.0f);
+	}
+	else if (hard == 2){
+		cor = &Color(0.0f, 0.0f, 0.5f, 1.0f);
+	}
+	else {
+		cor = &Color(0.5f, 0.0f, 0.0f, 1.0f);
+	}
 	stringstream text;
 	text.str("");
 	text << int(life);
-	anim->Draw(x, y, z); anim->Draw(x, y, z); verdana->Draw(x, y-50, text.str(), Color(1.0f, 1.0f, 1.0f, 1.0f));
+	anim->Draw(x, y, z, 1.0f, 0.0f, *cor);
+	verdana->Draw(x, y-50, text.str(), Color(1.0f, 1.0f, 1.0f, 1.0f));
 }
 
 // ---------------------------------------------------------------------------------
