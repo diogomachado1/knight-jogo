@@ -29,10 +29,16 @@ Knight* TSOTD::knight = new Knight();
 void TSOTD::Init()
 {
 	// cria sistema de áudio
-	//audio = new Audio();
+	audio = new Audio();
 	//audio->Add(MENU, "Resources/Menu.wav");
-	//audio->Add(MUSIC, "Resources/Music.wav");
-	//audio->Add(TRANSITION, "Resources/Transition.wav");
+	audio->Add(MUSIC, "Resources/song.wav");
+	audio->Add(ATTACK, "Resources/attack.wav");
+	audio->Add(SWING, "Resources/swing.wav");
+	audio->Add(BLOCK, "Resources/block.wav");
+	audio->Add(PLAYERDAMAGE, "Resources/playerDamage.wav");
+	audio->Add(PLAYERDEATH, "Resources/playerDeath.wav");
+	audio->Add(ENEMYDEATH, "Resources/enemyDeath.wav");
+
 	knight = new Knight();
 
 	viewBBox = false;

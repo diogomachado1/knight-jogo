@@ -1,11 +1,11 @@
 /**********************************************************************************
-// AnimaMax (Arquivo de Cabeçalho)
+// AnimaMax (Arquivo de Cabeï¿½alho)
 //
-// Criação:		10 Abr 2012
-// Atualização: 06 Jun 2019
+// Criaï¿½ï¿½o:		10 Abr 2012
+// Atualizaï¿½ï¿½o: 06 Jun 2019
 // Compilador:	Visual C++ 2019
 //
-// Descrição:	Exemplo de uso da classe Animation
+// Descriï¿½ï¿½o:	Exemplo de uso da classe Animation
 //
 **********************************************************************************/
 
@@ -26,18 +26,18 @@ enum ObjTypes
 	WALL,
 	SWORD,
 };
-
+enum Sounds { MENU, MUSIC, ATTACK, BLOCK,ENEMYDEATH,PLAYERDAMAGE,PLAYERDEATH,SWING };
 class TSOTD : public Game
 {
 private:
-	static Game* level;			// nível atual do jogo
+	static Game* level;			// nï¿½vel atual do jogo
 public:
-	static Audio* audio;			// sistema de áudio
+	static Audio* audio;			// sistema de ï¿½udio
 	static bool  viewBBox;			// visualiza bounding box
 	static Knight* knight;
 
 	template<class T>
-	static void NextLevel()			// muda para próximo nível do jogo
+	static void NextLevel()			// muda para prï¿½ximo nï¿½vel do jogo
 	{
 		if (level)
 		{
@@ -49,7 +49,7 @@ public:
 	};
 
 	void Init();					// inicializa jogo
-	void Update();					// atualiza lógica do jogo
+	void Update();					// atualiza lï¿½gica do jogo
 	void Draw();					// desenha jogo
 	void Finalize();				// finaliza jogo
 };

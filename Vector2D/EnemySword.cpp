@@ -63,8 +63,12 @@ void EnemySword::Update()
 		MoveTo(knight->x - (knight->width / 2 + width / 2), knight->y - 12);
 	}
 	if (knight->animGet == 3) {
+
+
 		if (knight->anim->Frame() == 8) {
 			knight->scene->Delete();
+			TSOTD::audio->Play(BLOCK);
+
 		}
 	}
 	if (knight->animGet != 3) {

@@ -1,12 +1,12 @@
 #pragma once
 /**********************************************************************************
-// Sword (Código Fonte)
+// Sword (Cï¿½digo Fonte)
 //
-// Criação:		20 Jan 2013
-// Atualização: 06 Jun 2019
+// Criaï¿½ï¿½o:		20 Jan 2013
+// Atualizaï¿½ï¿½o: 06 Jun 2019
 // Compilador:	Visual C++ 2019
 //
-// Descrição:	Animação de uma explosão
+// Descriï¿½ï¿½o:	Animaï¿½ï¿½o de uma explosï¿½o
 //
 **********************************************************************************/
 
@@ -65,6 +65,7 @@ void Sword::Update()
 	if (knight->animGet == 3) {
 		if (knight->anim->Frame() == 8) {
 			knight->scene->Delete();
+			TSOTD::audio->Play(BLOCK);
 		}
 	}
 	if (knight->animGet != 3) {
