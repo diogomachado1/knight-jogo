@@ -21,7 +21,7 @@ Scene* Level4::scene = nullptr;
 void Level4::Init()
 {
 	scene = new Scene();
-
+	shadow = new Sprite("Resources/shadow.png");
 	backg = new Sprite("Resources/battleground.png");
 	keyCtrl = false;
 	this->knight = TSOTD::knight;
@@ -60,6 +60,8 @@ void Level4::Init()
 	}
 	fin.close();
 
+	TSOTD::audio->Stop(MUSIC);
+	TSOTD::audio->Play(LV4MUSIC, true);
 	door = new Door(25, 100, 4, 2, knight);
 	scene->Add(door, STATIC);
 
@@ -111,7 +113,7 @@ void Level4::Update()
 	}
 	else if (door->newLevel == 2) {
 		ctrlKeyB = false;
-		knight->MoveTo(1100, 700);
+		knight->MoveTo(1050, 650);
 		TSOTD::NextLevel<Level2>();
 	}
 
@@ -124,6 +126,7 @@ void Level4::Draw()
 {
 	backg->Draw(float(window->CenterX()), float(window->CenterY()), Layer::BACK);
 	scene->Draw();
+	shadow->Draw(knight->x, knight->y, Layer::FRONT);
 	if (viewBBox == true) {
 		Engine::renderer->BeginPixels();
 		scene->Begin();
@@ -142,6 +145,7 @@ void Level4::Finalize()
 {
 	delete backg;
 	scene->Remove(knight, MOVING);
+	TSOTD::audio->Stop(LV4MUSIC);
 	//knight = nullptr;
 	delete scene;
 }

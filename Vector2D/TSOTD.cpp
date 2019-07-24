@@ -36,6 +36,8 @@ void TSOTD::Init()
 	audio->Add(SWING, "Resources/swing.wav");
 	audio->Add(BLOCK, "Resources/block.wav");
 	audio->Add(PLAYERDAMAGE, "Resources/hit.wav");
+	audio->Add(LV4MUSIC, "Resources/lv4.wav");
+	audio->Add(BOSS, "Resources/boss2.wav");
 	/*audio->Add(PLAYERDEATH, "Resources/playerDeath.wav");
 	audio->Add(ENEMYDEATH, "Resources/enemyDeath.wav");*/
 

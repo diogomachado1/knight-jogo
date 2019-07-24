@@ -55,7 +55,13 @@ EnemyKnight::EnemyKnight(Knight* knightIn, Wall* wall, Scene* scene, int hard, i
 	stop = false;
 	verdana = new Font("Resources/verdana12.png");
 	verdana->Spacing("Resources/verdana12.dat");
+	//audio = new Audio();
 	MoveTo(wall->x, wall->y - (wall->height / 2 + this->height / 2));
+	//audio->Add(WALK, "Resources/walk.wav");
+	//if(hard == 3 || hard == 4)
+	//	audio->Frequency(WALK,1.5);
+	//else 
+	//	audio->Frequency(WALK, 1);
 }
 
 
@@ -63,6 +69,7 @@ EnemyKnight::EnemyKnight(Knight* knightIn, Wall* wall, Scene* scene, int hard, i
 
 EnemyKnight::~EnemyKnight()
 {
+	//audio->Stop(WALK);
 	delete anim;
 }
 
@@ -80,6 +87,7 @@ void EnemyKnight::Stop()
 
 
 void EnemyKnight::SetAnimation(int animationNumber, bool sideCurrent) {
+	float delta = abs((targetX - x));
 	if (animGet != animationNumber || sideCurrent != side) {
 		side = sideCurrent;
 		animGet = animationNumber;
@@ -90,6 +98,14 @@ void EnemyKnight::SetAnimation(int animationNumber, bool sideCurrent) {
 			anim = animListLeft[animGet];
 		}
 		anim->Restart();
+		if (animGet == 2) {
+				//audio->Play(WALK);
+			//audio->Volume(WALK, 1 / (delta / 70));
+			
+		}
+		else {
+			//audio->Stop(WALK);
+		}
 	}
 	else if (animGet == 1) {
 		if (anim->Frame() < 6) {
@@ -102,7 +118,7 @@ void EnemyKnight::SetAnimation(int animationNumber, bool sideCurrent) {
 	if (animGet == 4 && anim->Frame() == 8) {
 		scene->Delete();
 	}
-
+	//audio->Volume(WALK, 1 / (delta / 70));
 }
 
 void EnemyKnight::OnCollision(Object* obj)
@@ -137,7 +153,6 @@ int EnemyKnight::reviceAttack(float value) {
 
 void EnemyKnight::Update()
 {
-
 	targetX = knight->x;
 	targetY = knight->y;
 	//

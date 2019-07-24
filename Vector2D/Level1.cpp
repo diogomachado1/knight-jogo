@@ -66,7 +66,8 @@ void Level1::Init()
 	
 	scene->Add(new Shield(90, 350, scene,0), STATIC);
 	scene->Add(new SwordItem(70, 350, scene,0), STATIC);
-	TSOTD::audio->Play(MUSIC,true);
+	TSOTD::audio->Play(MUSIC, true);
+	TSOTD::audio->Volume(MUSIC, 0.05f);
 
 }
 
@@ -115,10 +116,8 @@ void Level1::Update()
 	}
 	if (ctrlKeyB && window->KeyDown('B'))
 	{
-		ctrlKeyB = false;
 		TSOTD::NextLevel<Home>();
 	} else if (door->newLevel == 2) {
-			ctrlKeyB = false;
 			knight->MoveTo(100,100);
 			TSOTD::NextLevel<Level2>();
 	}
@@ -152,5 +151,6 @@ void Level1::Finalize()
 	delete backg;
 	scene->Remove(knight, MOVING);
 	//knight = nullptr;
+	TSOTD::audio->Stop(MUSIC);
 	delete scene;
 }
