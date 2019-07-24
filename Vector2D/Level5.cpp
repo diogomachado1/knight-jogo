@@ -68,7 +68,8 @@ void Level5::Init()
 	scene->Add(door, STATIC);
 
 
-
+	TSOTD::audio->Play(BOSS, true);
+	TSOTD::audio->Volume(BOSS,1.0f);
 }
 
 // ------------------------------------------------------------------------------
@@ -88,8 +89,10 @@ void Level5::Update()
 	if (knightDied == true)
 		gameOver->Draw(float(window->CenterX()), float(window->CenterY()), Layer::FRONT);
 
-	if (boss->life <= 0)
+	if (boss->life <= 0) {
 		congrats->Draw(float(window->CenterX()), float(window->CenterY()), Layer::FRONT);
+		knight->keys[2] = false;
+	}
 
 	scene->Update();
 	scene->CollisionDetection();
@@ -124,8 +127,6 @@ void Level5::Update()
 		knight->MoveTo(1100, 400);
 		TSOTD::NextLevel<Level2>();
 	}
-
-
 }
 
 // ------------------------------------------------------------------------------
@@ -142,7 +143,6 @@ void Level5::Draw()
 			if (obj->bbox)
 				Engine::renderer->Draw(obj->bbox, 0xffff00ff);
 		Engine::renderer->EndPixels();
-
 	}
 }
 
@@ -153,5 +153,6 @@ void Level5::Finalize()
 	delete backg;
 	scene->Remove(knight, MOVING);
 	//knight = nullptr;
+	TSOTD::audio->Stop(BOSS);
 	delete scene;
 }

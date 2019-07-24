@@ -16,6 +16,7 @@ class Level4 : public Game
 {
 private:
 	Sprite* backg = nullptr;		// sprite de fundo
+	Sprite* shadow = nullptr;
 	bool keyCtrl = false;			// controla pressionamento de teclas
 	bool viewBBox = false;
 	bool knightDied = false;

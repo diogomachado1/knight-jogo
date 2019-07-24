@@ -60,6 +60,9 @@ void Level3::Init()
 	}
 	fin.close();
 
+	TSOTD::audio->Play(MUSIC, true);
+	TSOTD::audio->Volume(MUSIC, 0.05f);
+
 	door = new Door(25, 750, 3, 2, knight);
 	scene->Add(door, STATIC);
 
@@ -143,5 +146,6 @@ void Level3::Finalize()
 	delete backg;
 	scene->Remove(knight, MOVING);
 	//knight = nullptr;
+	TSOTD::audio->Stop(MUSIC);
 	delete scene;
 }

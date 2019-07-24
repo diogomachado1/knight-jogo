@@ -83,6 +83,8 @@ void Level2::Init()
 	door4 = new Door(1175, 350, 2, 5, knight);
 	scene->Add(door4, STATIC);
 
+	TSOTD::audio->Play(MUSIC, true);
+	TSOTD::audio->Volume(MUSIC, 0.05f);
 
 	scene->Add(new Shield(1100, 100, scene, 1), STATIC);
 	scene->Add(new SwordItem(1100, 650, scene, 1), STATIC);
@@ -172,5 +174,6 @@ void Level2::Finalize()
 {
 	delete backg;
 	scene->Remove(knight, MOVING);
+	TSOTD::audio->Stop(MUSIC);
 	delete scene;
 }
